@@ -8,7 +8,11 @@ import net.minecraft.client.network.packet.PlayerListS2CPacket;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.HungerManager;
 import net.minecraft.network.NetworkSide;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.Style;
+import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.ServerTask;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -41,6 +45,7 @@ public class EntityPlayerMPFake extends ServerPlayerEntity
         EntityPlayerMPFake instance = new EntityPlayerMPFake(server, worldIn, gameprofile, interactionManagerIn);
         instance.fixStartingPosition = () -> instance.setPositionAndAngles(d0, d1, d2, (float) yaw, (float) pitch);
         server.getPlayerManager().onPlayerConnect(new NetworkManagerFake(NetworkSide.SERVERBOUND), instance);
+        server.getPlayerManager().sendToAll(new PlayerListS2CPacket(PlayerListS2CPacket.Action.UPDATE_DISPLAY_NAME, instance));
         if (instance.dimension != dimension) //player was logged in in a different dimension
         {
             ServerWorld old_world = server.getWorld(instance.dimension);
@@ -75,6 +80,7 @@ public class EntityPlayerMPFake extends ServerPlayerEntity
         GameProfile gameprofile = player.getGameProfile();
         EntityPlayerMPFake playerShadow = new EntityPlayerMPFake(server, worldIn, gameprofile, interactionManagerIn);
         server.getPlayerManager().onPlayerConnect(new NetworkManagerFake(NetworkSide.SERVERBOUND), playerShadow);
+        server.getPlayerManager().sendToAll(new PlayerListS2CPacket(PlayerListS2CPacket.Action.UPDATE_DISPLAY_NAME, playerShadow));
 
         playerShadow.setHealth(player.getHealth());
         playerShadow.networkHandler.requestTeleport(player.x, player.y, player.z, player.yaw, player.pitch);
@@ -102,6 +108,12 @@ public class EntityPlayerMPFake extends ServerPlayerEntity
         this.server.method_18858(new ServerTask(this.server.getTicks(), () -> {
             this.networkHandler.onDisconnected(Messenger.s("Killed"));
         }));
+    }
+
+    @Override
+    public Text method_14206() {
+        return new LiteralText(getGameProfile().getName())
+            .append(new LiteralText(" [bot]").setStyle(new Style().setColor(Formatting.GOLD)));
     }
 
     @Override

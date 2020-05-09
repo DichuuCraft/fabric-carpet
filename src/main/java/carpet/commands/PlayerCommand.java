@@ -169,6 +169,11 @@ public class PlayerCommand
             return true;
         }
         GameProfile profile = server.getUserCache().findByName(playerName);
+        if (playerName.length() >= 16)
+        {
+            Messenger.m(context.getSource(), "r Player name ", "rb " + playerName, "r  is too long");
+            return true;
+        }
         if (manager.getUserBanList().contains(profile))
         {
             Messenger.m(context.getSource(), "r Player ", "rb " + playerName, "r  is banned");
@@ -275,6 +280,15 @@ public class PlayerCommand
             Messenger.m(context.getSource(), "r Cannot shadow fake players");
             return 0;
         }
+        // https://github.com/gnembon/fabric-carpet/commit/19a01bee1be79e9ddc8f9056bc30dd9b9d15c02b
+        ServerPlayerEntity sendingPlayer = null;
+        try
+        {
+            sendingPlayer = context.getSource().getPlayer();
+        }
+        catch (CommandSyntaxException ignored) { }
+
+        if (sendingPlayer!=player && cantManipulate(context)) return 0;
         EntityPlayerMPFake.createShadow(player.server, player);
         return 1;
     }
