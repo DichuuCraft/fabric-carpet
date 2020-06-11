@@ -169,7 +169,7 @@ public class PlayerCommand
             return true;
         }
         GameProfile profile = server.getUserCache().findByName(playerName);
-        if (playerName.length() >= 16)
+        if (playerName.length() > 16)
         {
             Messenger.m(context.getSource(), "r Player name ", "rb " + playerName, "r  is too long");
             return true;

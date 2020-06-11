@@ -112,8 +112,8 @@ public class EntityPlayerMPFake extends ServerPlayerEntity
 
     @Override
     public Text method_14206() {
-        return new LiteralText(getGameProfile().getName())
-            .append(new LiteralText(" [bot]").setStyle(new Style().setColor(Formatting.GOLD)));
+        return new LiteralText("[bot] ").setStyle(new Style().setColor(Formatting.GOLD))
+            .append(new LiteralText(getGameProfile().getName()).setStyle(new Style().setColor(Formatting.WHITE)));
     }
 
     @Override
