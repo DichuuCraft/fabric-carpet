@@ -567,5 +567,5 @@ public class CarpetSettings
             desc = "Send VoxelMap world information packets to client",
             category = CREATIVE
     )
-    public static String voxelMapWorldName = "minecraft-server";
+    public static String voxelMapWorldName = "";
 }

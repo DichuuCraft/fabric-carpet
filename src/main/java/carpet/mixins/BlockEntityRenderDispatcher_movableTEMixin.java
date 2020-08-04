@@ -22,7 +22,7 @@ public abstract class BlockEntityRenderDispatcher_movableTEMixin implements Bloc
     @Shadow
     public static double renderOffsetZ;
     @Shadow
-    public Camera cameraEntity;
+    public Camera camera;
     @Shadow
     public World world;
     
@@ -37,8 +37,8 @@ public abstract class BlockEntityRenderDispatcher_movableTEMixin implements Bloc
     public void renderBlockEntityOffset(BlockEntity blockEntity_1, float partialTicks, int destroyStage, double xOffset,
             double yOffset, double zOffset)
     {
-        if (blockEntity_1.getSquaredDistance(this.cameraEntity.getPos().x - xOffset, this.cameraEntity.getPos().y - yOffset,
-                this.cameraEntity.getPos().z - zOffset) < blockEntity_1.getSquaredRenderDistance())
+        if (blockEntity_1.getSquaredDistance(this.camera.getPos().x - xOffset, this.camera.getPos().y - yOffset,
+                this.camera.getPos().z - zOffset) < blockEntity_1.getSquaredRenderDistance())
         {
             DiffuseLighting.enable();
             int i = this.world.getLightmapIndex(blockEntity_1.getPos(), 0);

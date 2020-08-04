@@ -6,6 +6,7 @@ import carpet.CarpetSettings;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import net.minecraft.network.packet.c2s.play.CustomPayloadC2SPacket;
+import net.minecraft.network.packet.s2c.play.CustomPayloadS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.PacketByteBuf;
@@ -24,8 +25,9 @@ public class VoxelMapUtil {
             buf.writeByte(0);
             buf.writeByte(bytes.length);
             buf.writeBytes(bytes);
-            player.networkHandler.sendPacket(new CustomPayloadC2SPacket(new Identifier(CHANNEL), buf));
-            bbuf.release();
+            player.networkHandler.sendPacket(new CustomPayloadS2CPacket(new Identifier(CHANNEL), buf), future -> {
+                bbuf.release();
+            });
         }
     }
 }

@@ -13,7 +13,7 @@ public class StructurePieceMixin
 {
     @Redirect(method = "isUnderSeaLevel", at = @At(
             value = "INVOKE",
-            target = "Lnet/minecraft/world/ViewableWorld;getTop(Lnet/minecraft/world/Heightmap$Type;II)I"
+            target = "Lnet/minecraft/world/CollisionView;getTop(Lnet/minecraft/world/Heightmap$Type;II)I"
     ))
     private int getTop(CollisionView viewableWorld, Heightmap.Type var1, int var2, int var3)
     {

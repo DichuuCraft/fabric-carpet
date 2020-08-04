@@ -18,7 +18,7 @@ public class PortalBlock_portalCachingMixin
 {
     @Inject(method = "createPortalAt", at = @At(
             value =  "INVOKE",
-            target = "Lnet/minecraft/block/PortalBlock$AreaHelper;createPortal()V"
+            target = "Lnet/minecraft/block/NetherPortalBlock$AreaHelper;createPortal()V"
     ))
     private void onCreatePortal(IWorld iWorld_1, BlockPos blockPos_1, CallbackInfoReturnable<Boolean> cir)
     {

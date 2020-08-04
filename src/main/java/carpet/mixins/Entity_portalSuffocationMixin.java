@@ -19,7 +19,7 @@ public abstract class Entity_portalSuffocationMixin
 
     @Inject(method = "changeDimension", at = @At(
             value = "INVOKE",
-            target = "Lnet/minecraft/entity/Entity;getLastPortalDirection()Lnet/minecraft/util/math/Direction;"
+            target = "Lnet/minecraft/entity/Entity;getLastNetherPortalDirection()Lnet/minecraft/util/math/Direction;"
     ))
     private void registerEntityDimensionChange(DimensionType dimensionType_1, CallbackInfoReturnable<Entity> cir)
     {
@@ -32,7 +32,7 @@ public abstract class Entity_portalSuffocationMixin
 
     @Redirect(method = "changeDimension", at = @At(
             value = "INVOKE",
-            target = "Lnet/minecraft/entity/Entity;setPositionAndAngles(Lnet/minecraft/util/math/BlockPos;FF)V"
+            target = "Lnet/minecraft/entity/Entity;refreshPositionAndAngles(Lnet/minecraft/util/math/BlockPos;FF)V"
     ))
     private void alternativeSetPositionAndAngles(Entity entity, BlockPos blockPos_1, float float_1, float float_2)
     {

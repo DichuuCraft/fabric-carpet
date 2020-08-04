@@ -22,7 +22,7 @@ public abstract class ServerPlayNetworkHandler_antiCheatDisabledMixin
 
     @Shadow protected abstract boolean isServerOwner();
 
-    @Shadow @Final public ClientConnection client;
+    @Shadow @Final public ClientConnection connection;
 
     @Shadow public ServerPlayerEntity player;
 

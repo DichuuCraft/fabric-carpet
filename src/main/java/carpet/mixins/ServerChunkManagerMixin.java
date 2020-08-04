@@ -74,66 +74,66 @@ public abstract class ServerChunkManagerMixin
             }
         }
     }
+    
+    // // @SuppressWarnings("UnresolvedMixinReference")
+    // @Redirect(method = "tickChunks", at = @At(
+    //         value = "INVOKE",
+    //         target = "Lnet/minecraft/world/SpawnHelper;spawnEntitiesInChunk(Lnet/minecraft/entity/EntityCategory;Lnet/minecraft/world/World;Lnet/minecraft/world/chunk/WorldChunk;Lnet/minecraft/util/math/BlockPos;)V"
+    // ))
+    // // inject our repeat of spawns if more spawn ticks per tick are chosen.
+    // private void spawnMultipleTimes(EntityCategory entityCategory_1, World world_1, WorldChunk worldChunk_1, BlockPos blockPos_1)
+    // {
+    //     for (int i = 0; i < SpawnReporter.spawn_tries.get(entityCategory_1); i++)
+    //     {
+    //         SpawnHelper.spawnEntitiesInChunk(entityCategory_1, world_1, worldChunk_1, blockPos_1);
+    //     }
+    // }
 
-    @SuppressWarnings("UnresolvedMixinReference")
-    @Redirect(method = "method_20801", at = @At(
-            value = "INVOKE",
-            target = "Lnet/minecraft/world/SpawnHelper;spawnEntitiesInChunk(Lnet/minecraft/entity/EntityCategory;Lnet/minecraft/world/World;Lnet/minecraft/world/chunk/WorldChunk;Lnet/minecraft/util/math/BlockPos;)V"
-    ))
-    // inject our repeat of spawns if more spawn ticks per tick are chosen.
-    private void spawnMultipleTimes(EntityCategory entityCategory_1, World world_1, WorldChunk worldChunk_1, BlockPos blockPos_1)
-    {
-        for (int i = 0; i < SpawnReporter.spawn_tries.get(entityCategory_1); i++)
-        {
-            SpawnHelper.spawnEntitiesInChunk(entityCategory_1, world_1, worldChunk_1, blockPos_1);
-        }
-    }
+    // @SuppressWarnings("UnresolvedMixinReference")
+    // @Redirect(method = "tickChunks", at = @At(
+    //         value = "INVOKE",
+    //         target = "Lnet/minecraft/entity/EntityCategory;getSpawnCap()I"
+    // ))
+    // // allows to change mobcaps and captures each category try per dimension before it fails due to full mobcaps.
+    // private int getNewMobcaps(EntityCategory entityCategory)
+    // {
+    //     DimensionType dim = this.world.dimension.getType();
+    //     int newCap = (int) ((double)entityCategory.getSpawnCap()*(Math.pow(2.0,(SpawnReporter.mobcap_exponent/4))));
+    //     if (SpawnReporter.track_spawns > 0L)
+    //     {
+    //         int int_2 = SpawnReporter.chunkCounts.get(dim); // eligible chunks for spawning
+    //         int int_3 = newCap * int_2 / CHUNKS_ELIGIBLE_FOR_SPAWNING; //current spawning limits
+    //         int mobCount = SpawnReporter.mobCounts.get(dim).getInt(entityCategory);
 
-    @SuppressWarnings("UnresolvedMixinReference")
-    @Redirect(method = "method_20801", at = @At(
-            value = "INVOKE",
-            target = "Lnet/minecraft/entity/EntityCategory;getSpawnCap()I"
-    ))
-    // allows to change mobcaps and captures each category try per dimension before it fails due to full mobcaps.
-    private int getNewMobcaps(EntityCategory entityCategory)
-    {
-        DimensionType dim = this.world.dimension.getType();
-        int newCap = (int) ((double)entityCategory.getSpawnCap()*(Math.pow(2.0,(SpawnReporter.mobcap_exponent/4))));
-        if (SpawnReporter.track_spawns > 0L)
-        {
-            int int_2 = SpawnReporter.chunkCounts.get(dim); // eligible chunks for spawning
-            int int_3 = newCap * int_2 / CHUNKS_ELIGIBLE_FOR_SPAWNING; //current spawning limits
-            int mobCount = SpawnReporter.mobCounts.get(dim).getInt(entityCategory);
-
-            if (SpawnReporter.track_spawns > 0L && !SpawnReporter.first_chunk_marker.contains(entityCategory))
-            {
-                SpawnReporter.first_chunk_marker.add(entityCategory);
-                //first chunk with spawn eligibility for that category
-                Pair key = Pair.of(dim, entityCategory);
+    //         if (SpawnReporter.track_spawns > 0L && !SpawnReporter.first_chunk_marker.contains(entityCategory))
+    //         {
+    //             SpawnReporter.first_chunk_marker.add(entityCategory);
+    //             //first chunk with spawn eligibility for that category
+    //             Pair key = Pair.of(dim, entityCategory);
 
 
-                int spawnTries = SpawnReporter.spawn_tries.get(entityCategory);
+    //             int spawnTries = SpawnReporter.spawn_tries.get(entityCategory);
 
-                SpawnReporter.spawn_attempts.put(key,
-                        SpawnReporter.spawn_attempts.get(key) + spawnTries);
+    //             SpawnReporter.spawn_attempts.put(key,
+    //                     SpawnReporter.spawn_attempts.get(key) + spawnTries);
 
-                SpawnReporter.spawn_cap_count.put(key,
-                        SpawnReporter.spawn_cap_count.get(key) + mobCount);
-            }
+    //             SpawnReporter.spawn_cap_count.put(key,
+    //                     SpawnReporter.spawn_cap_count.get(key) + mobCount);
+    //         }
 
-            if (mobCount <= int_3 || SpawnReporter.mock_spawns)
-            {
-                //place 0 to indicate there were spawn attempts for a category
-                //if (entityCategory != EntityCategory.CREATURE || world.getServer().getTicks() % 400 == 0)
-                // this will only be called once every 400 ticks anyways
-                SpawnReporter.local_spawns.putIfAbsent(entityCategory, 0L);
+    //         if (mobCount <= int_3 || SpawnReporter.mock_spawns)
+    //         {
+    //             //place 0 to indicate there were spawn attempts for a category
+    //             //if (entityCategory != EntityCategory.CREATURE || world.getServer().getTicks() % 400 == 0)
+    //             // this will only be called once every 400 ticks anyways
+    //             SpawnReporter.local_spawns.putIfAbsent(entityCategory, 0L);
 
-                //else
-                //full mobcaps - and key in local_spawns will be missing
-            }
-        }
-        return SpawnReporter.mock_spawns?Integer.MAX_VALUE:newCap;
-    }
+    //             //else
+    //             //full mobcaps - and key in local_spawns will be missing
+    //         }
+    //     }
+    //     return SpawnReporter.mock_spawns?Integer.MAX_VALUE:newCap;
+    // }
 
     @Inject(method = "tickChunks", at = @At("RETURN"))
     private void onFinishSpawnWorldCycle(CallbackInfo ci)
