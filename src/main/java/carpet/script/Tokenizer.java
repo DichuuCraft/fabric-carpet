@@ -1,5 +1,6 @@
 package carpet.script;
 
+import carpet.script.Tokenizer.Token.TokenType;
 import carpet.script.exception.ExpressionException;
 import carpet.script.exception.InternalExpressionException;
 

@@ -535,4 +535,37 @@ public class CarpetSettings
             category = CREATIVE
     )
     public static boolean extremeBehaviours = false;
+
+    @Rule(
+            desc = "Player Detecting radius when a bedrock is broken",
+            extra = {
+                    "If not -1, when a bedrock is broken, "
+            },
+            category = FEATURE
+    )
+    public static int bedrockBreakingDetectRadius = -1;
+
+    @Rule(
+            desc = "Fake players doesn't count for server player limit",
+            category = FEATURE
+    )
+    public static boolean fakesNoPlayerCount = false;
+        
+    @Rule(
+            desc = "OP level that /opa command gives to players. Use -1 to disable /opa command",
+            category = CREATIVE
+    )
+    public static int opaCommandLevel = -1;
+
+    @Rule(
+            desc = "Exclude fake players from scoreboards",
+            category = FEATURE
+    )
+    public static boolean scoreboardExcludeFakes = false;
+
+    @Rule(
+            desc = "Send VoxelMap world information packets to client",
+            category = CREATIVE
+    )
+    public static String voxelMapWorldName = "minecraft-server";
 }

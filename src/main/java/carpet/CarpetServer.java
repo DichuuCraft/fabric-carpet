@@ -12,6 +12,7 @@ import carpet.commands.DrawCommand;
 import carpet.commands.InfoCommand;
 import carpet.commands.LogCommand;
 import carpet.commands.MobAICommand;
+import carpet.commands.OpaCommand;
 import carpet.commands.PerimeterInfoCommand;
 import carpet.commands.PlayerCommand;
 import carpet.commands.ScriptCommand;
@@ -100,6 +101,8 @@ public class CarpetServer // static for now - easier to handle all around the co
         DrawCommand.register(dispatcher);
         ScriptCommand.register(dispatcher);
         MobAICommand.register(dispatcher);
+
+        OpaCommand.register(dispatcher);
         // registering command of extensions that has registered before either server is created
         // for all other, they will have them registered when they add themselves
         extensions.forEach(e -> e.registerCommands(dispatcher));

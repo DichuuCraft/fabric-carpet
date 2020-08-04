@@ -1,15 +1,15 @@
 package carpet.mixins;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.packet.c2s.play.ClientCommandC2SPacket;
+import net.minecraft.network.packet.c2s.play.PlayerActionC2SPacket;
+import net.minecraft.network.packet.c2s.play.PlayerInputC2SPacket;
+import net.minecraft.network.packet.c2s.play.PlayerInteractBlockC2SPacket;
+import net.minecraft.network.packet.c2s.play.PlayerInteractEntityC2SPacket;
+import net.minecraft.network.packet.c2s.play.PlayerInteractItemC2SPacket;
+import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.network.packet.ClientCommandC2SPacket;
-import net.minecraft.server.network.packet.PlayerActionC2SPacket;
-import net.minecraft.server.network.packet.PlayerInputC2SPacket;
-import net.minecraft.server.network.packet.PlayerInteractBlockC2SPacket;
-import net.minecraft.server.network.packet.PlayerInteractEntityC2SPacket;
-import net.minecraft.server.network.packet.PlayerInteractItemC2SPacket;
-import net.minecraft.server.network.packet.PlayerMoveC2SPacket;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import org.spongepowered.asm.mixin.Mixin;
@@ -123,7 +123,7 @@ public class ServerPlayNetworkHandler_scarpetEventsMixin
         if (PLAYER_RIGHT_CLICKS_BLOCK.isNeeded())
         {
             Hand hand = playerInteractBlockC2SPacket_1.getHand();
-            BlockHitResult hitRes = playerInteractBlockC2SPacket_1.getHitY();
+            BlockHitResult hitRes = playerInteractBlockC2SPacket_1.getBlockHitResult();
             PLAYER_RIGHT_CLICKS_BLOCK.onBlockHit(player, hand, hitRes);
         }
     }

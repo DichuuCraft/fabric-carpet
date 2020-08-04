@@ -27,10 +27,9 @@ import net.minecraft.command.arguments.BlockStateArgumentType;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.Clearable;
+import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.MutableIntBoundingBox;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -426,7 +425,7 @@ public class ScriptCommand
     {
         ServerCommandSource source = context.getSource();
         CarpetScriptHost host = getHost(context);
-        MutableIntBoundingBox area = new MutableIntBoundingBox(a, b);
+        BlockBox area = new BlockBox(a, b);
         CarpetExpression cexpr = new CarpetExpression(host.main, expr, source, origin);
 
         int int_1 = area.getBlockCountX() * area.getBlockCountY() * area.getBlockCountZ();
@@ -476,7 +475,7 @@ public class ScriptCommand
     {
         ServerCommandSource source = context.getSource();
         CarpetScriptHost host = getHost(context);
-        MutableIntBoundingBox area = new MutableIntBoundingBox(a, b);
+        BlockBox area = new BlockBox(a, b);
         CarpetExpression cexpr = new CarpetExpression(host.main, expr, source, origin);
         int int_1 = area.getBlockCountX() * area.getBlockCountY() * area.getBlockCountZ();
         if (int_1 > CarpetSettings.fillLimit)

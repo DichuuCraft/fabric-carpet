@@ -2,6 +2,7 @@ package carpet.commands;
 
 import carpet.helpers.EntityPlayerActionPack;
 import carpet.CarpetSettings;
+import carpet.commands.PlayerCommand.SupplierWithCommandSyntaxException;
 import carpet.fakes.ServerPlayerEntityInterface;
 import carpet.patches.EntityPlayerMPFake;
 import carpet.settings.SettingsManager;

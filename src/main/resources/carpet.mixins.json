@@ -157,7 +157,13 @@
     "PistonBlockEntity_movableTEMixin",
     "World_movableTEMixin",
     "WorldChunk_movableTEMixin",
-    "PistonHandler_movableTEMixin"
+    "PistonHandler_movableTEMixin",
+
+    "ServerWorld_bedrockStatsMixin",
+    "MinecraftServer_playerCountMixin",
+    "PlayerManager_playerCountMixin",
+    "PlayerManager_voxelMapMixin",
+    "ServerPlayerEntity_voxelMapMixin"
   ],
   "client": [
     "RenderTickCounter_tickSpeedMixin",
