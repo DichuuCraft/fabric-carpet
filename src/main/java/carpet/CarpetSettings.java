@@ -541,7 +541,8 @@ public class CarpetSettings
             extra = {
                     "If not -1, when a bedrock is broken, "
             },
-            category = FEATURE
+            category = FEATURE,
+            strict = false
     )
     public static int bedrockBreakingDetectRadius = -1;
 
@@ -553,7 +554,8 @@ public class CarpetSettings
         
     @Rule(
             desc = "OP level that /opa command gives to players. Use -1 to disable /opa command",
-            category = CREATIVE
+            category = CREATIVE,
+            strict = false
     )
     public static int opaCommandLevel = -1;
 
@@ -565,7 +567,8 @@ public class CarpetSettings
 
     @Rule(
             desc = "Send VoxelMap world information packets to client",
-            category = CREATIVE
+            category = CREATIVE,
+            strict = false
     )
     public static String voxelMapWorldName = "";
 }

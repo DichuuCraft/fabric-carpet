@@ -162,8 +162,9 @@
     "ServerWorld_bedrockStatsMixin",
     "MinecraftServer_playerCountMixin",
     "PlayerManager_playerCountMixin",
-    "PlayerManager_voxelMapMixin",
-    "ServerPlayerEntity_voxelMapMixin"
+    "ServerPlayNetworkHandler_voxelMapMixin",
+    "CustomPayloadC2SPacketAccessor",
+    "PlayerManager_commandOpaMixin"
   ],
   "client": [
     "RenderTickCounter_tickSpeedMixin",
