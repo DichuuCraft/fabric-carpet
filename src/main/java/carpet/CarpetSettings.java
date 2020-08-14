@@ -571,4 +571,16 @@ public class CarpetSettings
             strict = false
     )
     public static String voxelMapWorldName = "";
+
+    @Rule(
+            desc = "Enables /profile command to monitor game performance",
+            category = COMMAND
+    )
+    public static String commandProfile = "true";
+
+    @Rule(
+            desc = "Observers doesn't detect player-caused updates",
+            category = CREATIVE
+    )
+    public static boolean observerDisabled = false;
 }

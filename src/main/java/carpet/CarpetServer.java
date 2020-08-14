@@ -15,6 +15,7 @@ import carpet.commands.MobAICommand;
 import carpet.commands.OpaCommand;
 import carpet.commands.PerimeterInfoCommand;
 import carpet.commands.PlayerCommand;
+import carpet.commands.ProfileCommand;
 import carpet.commands.ScriptCommand;
 import carpet.commands.SpawnCommand;
 import carpet.commands.TickCommand;
@@ -102,6 +103,7 @@ public class CarpetServer // static for now - easier to handle all around the co
         ScriptCommand.register(dispatcher);
         MobAICommand.register(dispatcher);
 
+        ProfileCommand.register(dispatcher);
         OpaCommand.register(dispatcher);
         // registering command of extensions that has registered before either server is created
         // for all other, they will have them registered when they add themselves

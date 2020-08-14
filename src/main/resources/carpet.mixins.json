@@ -164,7 +164,8 @@
     "PlayerManager_playerCountMixin",
     "ServerPlayNetworkHandler_voxelMapMixin",
     "CustomPayloadC2SPacketAccessor",
-    "PlayerManager_commandOpaMixin"
+    "PlayerManager_commandOpaMixin",
+    "ObserverBlock_disabledMixin"
   ],
   "client": [
     "RenderTickCounter_tickSpeedMixin",

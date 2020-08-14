@@ -24,5 +24,9 @@ VoxelMap世界名称。
 * 类型：`String`
 * 默认：``（关闭发送世界名数据包）
 
+## observerDisabled
+侦测器不响应实体造成的更新。
+* 类型：`boolean`
+* 默认：`false`
 
 另外还修复了`mergeTNT`功能（参考[HIT-Carpet](https://github.com/HIT-Craft/HIT-Carpet)）。

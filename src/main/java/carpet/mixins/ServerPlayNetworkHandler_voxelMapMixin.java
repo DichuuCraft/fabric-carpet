@@ -18,7 +18,7 @@ public class ServerPlayNetworkHandler_voxelMapMixin {
     @Inject(method = "onCustomPayload", at = @At("HEAD"))
     private void onCustomPayload(CustomPayloadC2SPacket packet, CallbackInfo ci){
         CustomPayloadC2SPacketAccessor pa = (CustomPayloadC2SPacketAccessor)packet;
-        if (pa.getChannel().equals(VoxelMapUtil.CHANNEL)){
+        if (pa.getChannel2().equals(VoxelMapUtil.CHANNEL)){
             VoxelMapUtil.sendWorldInfoPacket(player);
         }
     }

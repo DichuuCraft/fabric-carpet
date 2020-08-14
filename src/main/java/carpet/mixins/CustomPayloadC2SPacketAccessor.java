@@ -10,7 +10,7 @@ import net.minecraft.util.PacketByteBuf;
 @Mixin(CustomPayloadC2SPacket.class)
 public interface CustomPayloadC2SPacketAccessor {
     @Accessor("channel")
-    Identifier getChannel();
+    Identifier getChannel2();
     @Accessor("data")
-    PacketByteBuf getData();
+    PacketByteBuf getData2();
 }
