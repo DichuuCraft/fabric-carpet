@@ -1,6 +1,8 @@
 package carpet.mixins;
 
+import carpet.fakes.ThreadedAnvilChunkStorageInterface;
 import carpet.utils.CarpetProfiler;
+import net.minecraft.server.world.ChunkHolder;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.server.world.ThreadedAnvilChunkStorage;
 import org.spongepowered.asm.mixin.Final;
@@ -13,10 +15,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.function.BooleanSupplier;
 
 @Mixin(ThreadedAnvilChunkStorage.class)
-public class ThreadedAnvilChunkStorage_tickMixin
+public abstract class ThreadedAnvilChunkStorage_tickMixin implements ThreadedAnvilChunkStorageInterface
 {
     @Shadow @Final private ServerWorld world;
     CarpetProfiler.ProfilerToken currentSection;
+
+    @Shadow
+    protected abstract Iterable<ChunkHolder> entryIterator();
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void startProfilerSection(BooleanSupplier booleanSupplier_1, CallbackInfo ci)
@@ -33,6 +38,9 @@ public class ThreadedAnvilChunkStorage_tickMixin
         }
     }
 
-
+    @Override
+    public Iterable<ChunkHolder> getChunkHolders() {
+        return entryIterator();
+    }
 
 }
